@@ -1,7 +1,10 @@
 <template>
   <div
     class='ag-wrapper ag-input-wrapper ag-checkbox-input-wrapper'
-    :class="{'ag-checked': checked, 'ag-indeterminate': indeterminate}"
+    :class="{
+      'ag-checked': checked, 
+      'ag-indeterminate': !checked && indeterminate
+    }"
     data-ref='eWrapper'
     role='presentation'> 
     <input
