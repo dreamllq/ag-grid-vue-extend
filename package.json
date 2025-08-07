@@ -1,7 +1,7 @@
 {
   "name": "ag-grid-vue-extend",
   "description": "ag-grid-vue 扩展 折叠/展开+多选功能（官方功能为收费功能）",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "main": "./dist/index.umd.cjs",
   "module": "./dist/index.js",
