@@ -32,7 +32,8 @@
   "eslint.validate": [
     "javascript",
     "javascriptreact",
-    "vue"
+    "vue",
+    "typescript"
   ],
   "css.validate": false,
   "less.validate": false,

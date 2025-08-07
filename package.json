@@ -1,6 +1,6 @@
 {
-  "name": "vite-vue3-ts-component-template",
-  "description": "模板",
+  "name": "ag-grid-vue-extend",
+  "description": "ag-grid-vue 扩展 折叠/展开+多选功能（官方功能为收费功能）",
   "version": "0.0.0",
   "type": "module",
   "main": "./dist/index.umd.cjs",
@@ -32,6 +32,7 @@
     "publish:latest": "npm publish --registry=https://registry.npmjs.org/"
   },
   "devDependencies": {
+    "ag-grid-vue3": "^34.1.0",
     "@types/jest": "^29.5.1",
     "@types/lodash": "^4.14.194",
     "@types/uuid": "^9.0.1",
@@ -53,6 +54,7 @@
     "postcss-scss": "^4.0.6",
     "rxjs": "^7.8.1",
     "sass": "^1.62.1",
+    "simple-tree-model": "^1.0.7",
     "stylelint": "^16.22.0",
     "stylelint-config-recommended-scss": "^15.0.1",
     "ts-jest": "^29.1.0",
