@@ -12,7 +12,12 @@ export default defineConfig({
     vueJsx(),
     cssInjectedByJsPlugin()
   ],
-  resolve: { alias: { '@': path.resolve(__dirname, './src') } },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      'ag-grid-vue-extend': path.resolve(__dirname, './src/index') 
+    } 
+  },
   esbuild: { drop: ['console', 'debugger'] },
   build: {
     lib: {
@@ -43,5 +48,6 @@ export default defineConfig({
         exports: 'named'
       }
     }
-  }
+  },
+  css: { preprocessorOptions: { scss: { silenceDeprecations: ['legacy-js-api'] } } }
 });

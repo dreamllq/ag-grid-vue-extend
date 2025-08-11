@@ -25,7 +25,10 @@ import { onBeforeUnmount, ref, type PropType } from 'vue';
 
 const props = defineProps({
   params: {
-    type: Object as PropType<IHeaderParams & {getTree: ()=> Tree, checkCallback: ()=> void}>,
+    type: Object as PropType<IHeaderParams & {
+      getTree: ()=> Tree, 
+      checkCallback: ()=> void
+    }>,
     required: true
   }
 });
@@ -53,7 +56,3 @@ const onInput = (e: Event) => {
   props.params.api.setGridOption('rowData', tree.flat());
 };
 </script>
-
-<style scoped>
-
-</style>

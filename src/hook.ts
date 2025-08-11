@@ -2,24 +2,23 @@ import { Tree, type TreeDataItem } from 'simple-tree-model';
 import SelectionCell from './components/selection-cell.vue';
 import SelectionHeader from './components/selection-header.vue';
 import GroupCell from './components/group-cell.vue';
-import EventEmitter from 'eventemitter3';
 
-export const useAgGridExtend = () => { 
-  const ee = new EventEmitter<'selection-change'>();
+export type AgGridExtendOptions = {
+  loadData?: () => Promise<TreeDataItem[]>;
+  onSelectionChange?: ()=> void;
+}
 
-  const bus = {
-    emit: ee.emit.bind(ee),
-    on: ee.on.bind(ee),
-    off: ee.off.bind(ee)
-  };
-
+export const useAgGridExtend = (options:AgGridExtendOptions = {}) => { 
   let tree: Tree | undefined = undefined;
   let selectionRows: TreeDataItem[] = [];
   let currentDataSelectionRows : TreeDataItem[] = [];
 
   const onSelectionChange = () => {
     currentDataSelectionRows = tree!.getCheckedNodes().map(item => item.toJSON());
-    bus.emit('selection-change');
+    
+    if (options.onSelectionChange) {
+      options.onSelectionChange();
+    }
   };
 
   const init = (data: TreeDataItem[]) => {
@@ -51,7 +50,10 @@ export const useAgGridExtend = () => {
   const expandColumn = {
     field: '_expandFlag',
     cellRenderer: GroupCell,
-    cellRendererParams: { getTree: () => tree }
+    cellRendererParams: {
+      getTree: () => tree,
+      loadData: options.loadData 
+    }
   };
 
   const flat = () => tree?.flat() || [];
@@ -63,7 +65,6 @@ export const useAgGridExtend = () => {
   };
 
   return {
-    bus,
     init,
     checkColumn,
     expandColumn,
