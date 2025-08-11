@@ -12,6 +12,7 @@
 import { AgGridVue } from 'ag-grid-vue3'; // AG Grid Component
 import type { ColDef } from 'ag-grid-community';
 import { ref } from 'vue';
+import { v4 as uuidv4 } from 'uuid';
 import { useAgGridExtend } from 'ag-grid-vue-extend';
 
 const {
@@ -19,7 +20,18 @@ const {
 } = useAgGridExtend({
   loadData: () => new Promise(resolve => {
     setTimeout(() => {
-      resolve([]);
+      resolve([
+        {
+          id: uuidv4(),
+          name: '张ba',
+          children: []
+        },
+        {
+          id: uuidv4(),
+          name: '张jiu',
+          children: []
+        }
+      ]);
     }, 1000);
   }) 
 });
