@@ -57,22 +57,24 @@ const onExpand = async (expanded: boolean) => {
   if (loading.value) return;
   // 更改展开状态
   const tree = props.params.getTree();
-  tree.expand(props.params.data!.id, expanded);
   const node = tree.getById(props.params.data!.id)!;
-  node.children = node.children || [];
 
   if (hasLoadDateHasChildren.value) {
     try {
       loading.value = true;
 
       const children = await props.params.loadData!();
+      node.children = [];
       children.forEach(child => {
         tree.add(props.params.data!.id, child);
       });
     } finally {
       loading.value = false;
     }
+  } else if (!props.params.data?.hasChildren) {
+    node.children = [];
   }
+  tree.expand(props.params.data!.id, expanded);
 
   props.params.api.setGridOption('rowData', tree.flat());
 };
