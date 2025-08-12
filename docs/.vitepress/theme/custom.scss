@@ -38,3 +38,20 @@
     font-size: 14px;
   }
 }
+
+
+.VPDoc.has-aside .content-container {
+    max-width: 15000px !important;
+}
+
+@media (min-width: 1440px) {
+    .VPDoc:not(.has-sidebar) .content {
+        max-width: 15000px !important;
+    }
+}
+
+@media (min-width: 1440px) {
+    .VPDoc:not(.has-sidebar) .container {
+        max-width: 20000px !important;
+    }
+}
